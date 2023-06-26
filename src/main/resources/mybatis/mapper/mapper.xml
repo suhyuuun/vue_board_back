@@ -1,0 +1,40 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.board.dao.BoardDAO">
+	<!-- 글 리스트 -->
+	<select id="list" resultType="BoardDTO">
+		SELECT * from SECOND_BOARD
+	</select>
+	
+	<!-- 게시판 종류 -->
+	<select id="group" parameterType="String" resultType="BoardDTO">
+		SELECT * from SECOND_BOARD
+		WHERE `group` = #{group}
+	</select>
+
+	<!-- 글 보기 -->
+	<select id="view" parameterType="int" resultType="BoardDTO">
+		SELECT * FROM SECOND_BOARD 
+		WHERE IDX =#{idx} 
+	</select>
+
+	<!-- 글 작성 -->
+	<insert id="insert" parameterType="BoardDTO">
+		INSERT INTO SECOND_BOARD(`group`, title, contents, create_date) 
+		VALUES (#{group}, #{title}, #{contents, jdbcType=VARCHAR}, now())
+	</insert>
+	
+	<!-- 글 수정 -->
+	<update id="update" parameterType="BoardDTO">
+		UPDATE SECOND_BOARD
+		SET title=#{title}, contents=#{contents}, update_date=now()
+		WHERE idx=#{idx}
+	</update>
+	
+	<!-- 글 삭제 -->
+	<delete id="delete" parameterType="int">
+		DELETE FROM SECOND_BOARD WHERE IDX =#{idx}
+	</delete>
+</mapper>
