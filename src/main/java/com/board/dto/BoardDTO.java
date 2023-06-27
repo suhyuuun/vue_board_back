@@ -19,5 +19,4 @@ public class BoardDTO {
 	private String contents;
 	private Date create_date;
 	private Date update_date;
-	
 }
