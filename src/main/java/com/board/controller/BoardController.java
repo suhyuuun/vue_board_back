@@ -31,7 +31,7 @@ public class BoardController {
 		return boardList;
 	}
 	
-	//게시판 종류(자유게시판, 공지사항, Q&A)
+	//게시판 종류(자유게시판, 공지사항)
 	@GetMapping("/category/{group}")
 	public List<BoardDTO> GroupMethod(@PathVariable("group") String group){
 		List<BoardDTO> boardList = boardService.groupProcess(group);
